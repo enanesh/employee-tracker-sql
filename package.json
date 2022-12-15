@@ -1,0 +1,24 @@
+{
+  "name": "employee-tracker-sql",
+  "version": "1.0.0",
+  "description": "simple app to track employee roles",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enanesh/employee-tracker-sql.git"
+  },
+  "author": "Edna Gonzalez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/enanesh/employee-tracker-sql/issues"
+  },
+  "homepage": "https://github.com/enanesh/employee-tracker-sql#readme",
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {}
+}
