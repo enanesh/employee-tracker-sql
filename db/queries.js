@@ -1,26 +1,46 @@
 const dbConnection = require('../lib/connection');
+const cTable = require('console.table');
 
-
-module.exports = class dbQueries {
-    constructor(db) {
-        this.db = db;
+class dbQueries {
+    constructor(dbConnection) {
+        this.dbConnection = dbConnection;
     }
 
-};
 
 
-// dbConnection.query("SELECT * FROM department", function (err, results) {
+
+// dbConnection.query("SELECT * FROM students", function (err, results) {
 //     console.log(results);
+
+
 // });
 
-function getDepartments(){
-    return dbConnection.query(
-    'SELECT * FROM department',
-    function (err, results, fields) {
-        console.log(results); // results contains rows returned by server
-        
-    }
-);
+
+
+    // getDepts() {
+    //     return this.db
+    //         .promise()
+    //         .query(
+    //             `SELECT * 
+    // FROM department`
+    //         );
+    // }
+ 
+    
+
 };
 
-getDepartments();
+function getDepartment() {
+    return dbConnection.query(
+        'SELECT * FROM department ORDER BY id ASC',
+        function (err, results, fields) {
+            console.log(cTable.getTable(results)); // results contains rows returned by server
+
+        }
+    )
+};
+
+getDepartment();
+
+
+module.exports = {dbQueries};

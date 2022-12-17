@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const cTable = require("console.table");
+const cTable = require('console.table');
 const sql = require('./db/queries');
 
 
@@ -23,10 +23,24 @@ const promtQuestions = () => {
         }
 
     ]).then(answer => {
-        console.log("maria")
+        viewDepts();
         
 
     })
 }
 
+
+const viewDepts = () => {
+    sql.getDepartment();
+    .then(([rows]) => {
+            console.log('\n');
+            console.log(cTable.getTable(rows));
+    });
+
+        
+}
+
+
 promtQuestions();
+
+console.log(sql);
