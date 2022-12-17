@@ -1,8 +1,6 @@
 const inquirer = require("inquirer");
-
-
-
-
+const cTable = require("console.table");
+const sql = require('./db/queries');
 
 
 
@@ -24,7 +22,11 @@ const promtQuestions = () => {
                 
         }
 
-    ])
+    ]).then(answer => {
+        console.log("maria")
+        
+
+    })
 }
 
 promtQuestions();
