@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/enanesh/employee-tracker-sql#readme",
   "dependencies": {
+    "ascii-text-generator": "^1.0.5",
     "console.table": "^0.10.0",
     "dotenv": "^16.0.3",
     "inquirer": "^8.2.4",
