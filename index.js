@@ -16,6 +16,7 @@ const promptActions = () => {
             choices: [
                 'View All Employees',
                 'Add Employee',
+                'View Employees by Manager // bonus',
                 'Update Employee Role',
                 'View All Roles',
                 'Add Role',
@@ -44,6 +45,19 @@ const promptActions = () => {
                     console.log('\n');
 ;
                     break;
+                
+                case 'View Employees by Manager // bonus':
+                    console.log('\n')
+                    console.log("==========================");
+                    console.log("** EMPLOYEES BY MANAGER **");
+                    console.log("==========================");
+                    sql.getEmployeesByManager().then(([results]) => {
+                        console.log('\n');
+                        console.log(cTable.getTable(results));
+                        promptActions();
+                    });
+                    break;
+                
 
                 case "View All Roles":
                     console.log('\n')
@@ -284,6 +298,8 @@ const updateRole = async () => {
 
 
 }
+
+//VIEW EMPLOYEES BY MANAGER
 
 
 
