@@ -48,11 +48,21 @@ function addDepartment(depaName) {
     dbConnection.query(`INSERT INTO department(department_name) VALUES ("${depaName}")`);
 }
 
-//
+//ADDS NEW EMPLOYEE 
+function addEmployee(firstName,lastName,empRole,manName) {
+    dbConnection.query(`INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES ("${firstName}","${lastName}",${empRole},${manName}) `);
+  
+}
+
+//update costumer
+
+function updateEmployee(upEmpRole, upEmpName) {
+    dbConnection.query(`UPDATE employee SET role_id= ${upEmpRole} WHERE id=${upEmpName} `
+
+    );
+}
 
 
 
 
-
-
-module.exports = { getRoles, getDepartment, addRole, getEmployees, addDepartment ,getManager};
+module.exports = { getRoles, getDepartment, addRole, getEmployees, addDepartment, getManager, addEmployee, updateEmployee };

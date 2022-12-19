@@ -61,8 +61,20 @@ const promptActions = () => {
 
                     });
                     break;
+                
+                    case "Update Employee Role":
+                    console.log('\n')
+                    console.log("=========================");
+                    console.log("**** UPDATE EMPLOYEE ****");
+                    console.log("=========================");
+                    sql.getEmployees().then(([results]) => {
+                        updateRole(results);
+                       
+                    });
+                    break;
 
-                case "View All Departments":
+
+                     case "View All Departments":
                     console.log('\n')
                     console.log("=========================");
                     console.log("**** ALL DEPARTMENTS ****");
@@ -73,10 +85,14 @@ const promptActions = () => {
                         console.log('\n');
                     });
                     break;
-                case "Add department":
+                
+                     case "Add department":
                     addDepartment();
 
                     break;
+                
+             
+                
 
             }
 
@@ -91,7 +107,7 @@ const promptActions = () => {
 const addEmployee = async () => {
   
 
-    let roles = (await sql.getRoles())[0];
+    let roles = (await sql.getRoles())[0];//has to be 0 position 
     let manager = (await sql.getManager())[0];
     console.log(manager);
 
@@ -140,6 +156,7 @@ const addEmployee = async () => {
 
     ]).then(answer => {
         console.log(answer);
+        sql.addEmployee(answer.firstName, answer.lastName, answer.empRole,answer.manName)
     })
 
 
@@ -207,6 +224,58 @@ const addRole = (departments) => {
 
 };
 
+
+//UPDATE ROLE 
+
+const updateRole = async () => {
+
+
+    let empToUp = (await sql.getEmployees())[0];//has to be 0 position 
+    console.log(empToUp);
+
+    const upEmpName = [];
+    for (let i = 0; i < empToUp.length; i++) {
+        let value = { "name": empToUp[i].first_name + " " + empToUp[i].last_name, "value": empToUp[i].id }
+        upEmpName.push(value);
+    }
+
+    let upRoles = (await sql.getRoles())[0];
+
+    const upEmpRole = [];
+    for (let i = 0; i < upRoles.length; i++) {
+        let value = { "name": upRoles[i].title, "value": upRoles[i].id }
+        upEmpRole.push(value);
+    }
+
+
+
+    inquirer.prompt([
+     
+        {
+            type: 'list',
+            name: 'upEmpName',
+            message: "Which employe's role do you want to update?",
+            choices: upEmpName
+
+        },
+        {
+            type: 'list',
+            name: 'upEmpRole',
+            message: "Which role do you want to assign the selected employee?",
+            choices: upEmpRole
+
+        },
+
+   
+
+    ]).then(answer => {
+        console.log(answer);
+        sql.updateEmployee(answer.upEmpRole,answer.upEmpName)
+    })
+
+
+
+}
 
 
 
