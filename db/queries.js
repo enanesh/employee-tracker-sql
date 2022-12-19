@@ -54,13 +54,15 @@ function addEmployee(firstName,lastName,empRole,manName) {
   
 }
 
-//update costumer
+//UPDATE EMPLOYEE ROLE
 
 function updateEmployee(upEmpRole, upEmpName) {
     dbConnection.query(`UPDATE employee SET role_id= ${upEmpRole} WHERE id=${upEmpName} `
 
     );
 }
+
+//UPDATE EMPLOYEE BY MANAGER
 
 
 

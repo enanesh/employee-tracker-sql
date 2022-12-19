@@ -35,11 +35,14 @@ const promptActions = () => {
                     sql.getEmployees().then(([results]) => {
                         console.log('\n');
                         console.log(cTable.getTable(results));
-
+                        promptActions();
                     });
                     break;
+                
                 case "Add Employee":
                     addEmployee();
+                    console.log('\n');
+;
                     break;
 
                 case "View All Roles":
@@ -52,12 +55,14 @@ const promptActions = () => {
                         console.log(cTable.getTable(results));
                         console.log('\n');
                         promptActions();
+                
                     });
 
                     break;
                 case "Add Role":
                     sql.getDepartment().then(([results]) => {
                         addRole(results);
+                       
 
                     });
                     break;
@@ -69,6 +74,7 @@ const promptActions = () => {
                     console.log("=========================");
                     sql.getEmployees().then(([results]) => {
                         updateRole(results);
+                     
                        
                     });
                     break;
@@ -83,6 +89,7 @@ const promptActions = () => {
                         console.log('\n');
                         console.log(cTable.getTable(results));
                         console.log('\n');
+                   
                     });
                     break;
                 
@@ -109,7 +116,7 @@ const addEmployee = async () => {
 
     let roles = (await sql.getRoles())[0];//has to be 0 position 
     let manager = (await sql.getManager())[0];
-    console.log(manager);
+   
 
      const empRole = [];
     for (let i = 0; i < roles.length; i++) {
@@ -155,8 +162,8 @@ const addEmployee = async () => {
         }
 
     ]).then(answer => {
-        console.log(answer);
-        sql.addEmployee(answer.firstName, answer.lastName, answer.empRole,answer.manName)
+        sql.addEmployee(answer.firstName, answer.lastName, answer.empRole, answer.manName);
+        promptActions();
     })
 
 
@@ -180,6 +187,7 @@ const addDepartment = () => {
     ]).then(answer => {
         console.log(answer);
         sql.addDepartment(answer.depaName);
+        promptActions();
     });
 
 }
@@ -218,8 +226,8 @@ const addRole = (departments) => {
         }
 
     ]).then(answer => {
-        console.log(answer);
         sql.addRole(answer.roleName, answer.roleSalary, answer.department);
+        promptActions();
     })
 
 };
@@ -231,8 +239,7 @@ const updateRole = async () => {
 
 
     let empToUp = (await sql.getEmployees())[0];//has to be 0 position 
-    console.log(empToUp);
-
+   
     const upEmpName = [];
     for (let i = 0; i < empToUp.length; i++) {
         let value = { "name": empToUp[i].first_name + " " + empToUp[i].last_name, "value": empToUp[i].id }
@@ -269,8 +276,9 @@ const updateRole = async () => {
    
 
     ]).then(answer => {
-        console.log(answer);
-        sql.updateEmployee(answer.upEmpRole,answer.upEmpName)
+       
+        sql.updateEmployee(answer.upEmpRole, answer.upEmpName);
+        promptActions();
     })
 
 
