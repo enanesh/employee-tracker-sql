@@ -37,7 +37,7 @@ In order of being able to run this application you'll need
 ### Step 1:
 
 ```sh
-git clone https://github.com/enanesh/express-note-taker.git
+git clone https://github.com/enanesh/employee-tracker-sql
 
 git status 
 ```
