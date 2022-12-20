@@ -17,11 +17,13 @@ const promptActions = () => {
                 'View All Employees',
                 'Add Employee',
                 'View Employees by Manager // bonus',
+                'View Employees by Department // bonus',
                 'Update Employee Role',
                 'View All Roles',
                 'Add Role',
                 'View All Departments',
-                'Add department']
+                'Add department',
+                ]
 
 
         }]).then(answer => {
@@ -52,6 +54,17 @@ const promptActions = () => {
                     console.log("** EMPLOYEES BY MANAGER **");
                     console.log("==========================");
                     sql.getEmployeesByManager().then(([results]) => {
+                        console.log('\n');
+                        console.log(cTable.getTable(results));
+                        promptActions();
+                    });
+                    break;
+                case 'View Employees by Department // bonus':
+                    console.log('\n')
+                    console.log("=============================");
+                    console.log("** EMPLOYEES BY DEPARTMENT **");
+                    console.log("=============================");
+                    sql.getEmployeesByDep().then(([results]) => {
                         console.log('\n');
                         console.log(cTable.getTable(results));
                         promptActions();
@@ -109,16 +122,14 @@ const promptActions = () => {
                 
                      case "Add department":
                     addDepartment();
-
+                    ;
                     break;
                 
-             
+                
                 
 
-            }
-
-
-
+            } 
+            
         });
 }
 
@@ -298,9 +309,6 @@ const updateRole = async () => {
 
 
 }
-
-//VIEW EMPLOYEES BY MANAGER
-
 
 
 

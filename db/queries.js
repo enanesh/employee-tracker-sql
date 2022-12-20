@@ -35,6 +35,13 @@ function getEmployeesByManager() {
     );
 };
 
+//GETS EMPLOYEE TABLE BY DEPARTMENT
+function getEmployeesByDep() {
+    return dbConnection.promise().query(
+        'SELECT employee.id,employee.first_name,employee.last_name,department.department_name AS Department,CONCAT("$",FORMAT(role.salary,"C0")) AS salary,role.title,CONCAT(mgt.first_name," ", mgt.last_name) AS Manager FROM employee LEFT JOIN employee mgt ON employee.manager_id = mgt.id INNER JOIN role ON employee.role_id = role.id  LEFT JOIN  department ON role.department_id = department.id ORDER BY Department ',
+    );
+};
+
 
 
 //GETS MANAGER CONCAT NAME 
@@ -77,4 +84,4 @@ function updateEmployee(upEmpRole, upEmpName) {
 
 
 
-module.exports = { getRoles, getDepartment, addRole, getEmployees, addDepartment, getManager, addEmployee, updateEmployee, getEmployeesByManager };
+module.exports = { getRoles, getDepartment, addRole, getEmployees, addDepartment, getManager, addEmployee, updateEmployee, getEmployeesByManager, getEmployeesByDep };
