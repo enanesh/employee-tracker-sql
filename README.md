@@ -15,7 +15,7 @@ As a business owner want to be able to view and manage the departments, roles, a
 - Add Employee
 - View all employees
 - View employees by manager //bonus
--View employees by Department //bonus
+- View employees by Department //bonus
 - update employee role
 - View all roles
 - Add role
